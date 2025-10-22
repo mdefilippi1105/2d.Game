@@ -11,6 +11,7 @@ public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
     int hasKey = 0;
+    boolean hasBoot = false;
 
     // as opposed to the player coordinates, these are the camera coordinates
     // they do not change; hence final int
@@ -140,9 +141,12 @@ public class Player extends Entity {
                         gp.obj[i] = null;
                         hasKey--;
                     }
+                    break;
                 case "Boots":
+                    hasBoot = true;
                     speed += 2;
                     gp.obj[i] = null;
+                    break;
             }
         }
 
