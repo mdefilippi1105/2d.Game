@@ -24,7 +24,7 @@ public class Sound {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 
-        }catch (Exception e){
+        } catch (Exception e){
         }
     }
     public void playSound() {

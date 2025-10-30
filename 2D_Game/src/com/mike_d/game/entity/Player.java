@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
-    int hasKey = 0;
+    public int hasKey = 0;
     boolean hasBoot = false;
 
     // as opposed to the player coordinates, these are the camera coordinates
@@ -114,12 +114,15 @@ public class Player extends Entity {
 //      This gets called 60 times per second
 //       as per GamePanel class
 //       every 12 frames change the sprite
-        spriteCounter++;
-        if (spriteCounter > 14) {
+        if (moving) {
+            spriteCounter++;
+        }
+
+        if (spriteCounter > 10) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             }
-            else if (spriteNum ==2) {
+            else if (spriteNum == 2) {
                 spriteNum = 1;
             }
             spriteCounter = 0;
@@ -132,20 +135,34 @@ public class Player extends Entity {
 
             switch(objectName) {
                 case "Key":
+                    gp.playSfx(1);
                     hasKey++;
                     gp.obj[i] = null;
                     System.out.println("Key:" + hasKey);
+                    gp.ui.showMessage("You've got a key!");
                     break;
                 case "Door":
                     if (hasKey > 0) {
+                        gp.playSfx(3);
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage("You've opened the door.");
+                    } else {
+                        gp.ui.showMessage("You need a key to proceed!");
                     }
+
                     break;
                 case "Boots":
                     hasBoot = true;
+                    gp.playSfx(2);
                     speed += 2;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("Speed up!");
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSfx(4);
                     break;
             }
         }

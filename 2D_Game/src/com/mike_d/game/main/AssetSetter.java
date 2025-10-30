@@ -1,6 +1,7 @@
 package com.mike_d.game.main;
 
 import com.mike_d.game.object.OBJ_Boots;
+import com.mike_d.game.object.OBJ_Chest;
 import com.mike_d.game.object.OBJ_Door;
 import com.mike_d.game.object.OBJ_Key;
 
@@ -32,6 +33,10 @@ public class AssetSetter {
         gp.obj[4] = new OBJ_Boots();
         gp.obj[4].worldX = 7 * gp.tileSize;
         gp.obj[4].worldY = 45 * gp.tileSize;
+
+        gp.obj[5] = new OBJ_Chest();
+        gp.obj[5].worldX = 41 * gp.tileSize;
+        gp.obj[5].worldY = 49 * gp.tileSize;
 
     }
 }
